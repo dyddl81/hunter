@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+    xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+        http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+    <context:property-placeholder location="classpath:properties/jdbc.properties, classpath:properties/config.properties" />
+    
+    <context:component-scan base-package="co.kr.hunter">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+ 	
+     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"> 
+         <property name="driverClassName" value="${jdbc.driverClassName}" /> 
+         <property name="url" value="${jdbc.url}" /> 
+         <property name="username" value="${jdbc.username}" /> 
+         <property name="password" value="${jdbc.password}" /> 
+ 
+         <!-- Pool 관련 설정 -->
+         <!-- property name="validationQuery" value="select 1 from dual" /--> 
+         <property name="maxTotal" value="${jdbc.maxTotal}" /> 
+         <property name="maxIdle" value="${jdbc.maxIdle}" /> 
+         <property name="minIdle" value="${jdbc.minIdle}" /> 
+         <property name="maxWaitMillis" value="${jdbc.maxWaitMillis}" /> 
+         <property name="defaultAutoCommit" value="true" /> 
+     </bean>
+ 
+     <!-- Mybatis 설정 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:/sqlmap/sql-mapper-config.xml" />
+		<property name="mapperLocations" value="classpath:/sqlmap/mysql/mappers/*_SQL.xml" />
+	</bean>
+ 
+     <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+    
+     <mybatis-spring:scan base-package="co.kr.hunter.*.mapper" factory-ref="sqlSessionFactory"/>
+ 
+     <!-- 트랜잭션 매니저 등록 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+ 
+    <!-- 트랜잭션 AOP 적용 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- 트랜잭션을 사용하지 않겠다. -->
+            <tx:method name="get*" read-only="true" />
+            <tx:method name="select*" read-only="true" />
+            
+            <!-- 트랜잭션을 사용 적용 하겠다. -->
+            <!-- insertMemberItem() 이런 메소드명 -->
+            <tx:method name="insert*" rollback-for="Exception" />
+            <tx:method name="update*" rollback-for="Exception" />
+            <tx:method name="delete*" rollback-for="Exception" />
+ 
+            <!-- 등록 수정 삭제가 같이 있을 경우 사용 -->
+            <tx:method name="put*" rollback-for="Exception" />
+            
+            <!-- 모든 메소드 명에 트랜젝션을 적용하겠다. -->
+            <!-- tx:method name="*" rollback-for="Exception" /-->
+        </tx:attributes>
+    </tx:advice>
+ 
+    <aop:config>
+        <aop:pointcut expression="execution(public * co.kr.hunter..*(..))" id="servicePointCut" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointCut" />
+    </aop:config>
+ 
+</beans>

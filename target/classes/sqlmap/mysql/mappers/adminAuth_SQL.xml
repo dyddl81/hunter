@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="co.kr.hunter.auth.mapper.AdminAuthMapper">
+ 
+    <select id="selectAdminUser" resultType="adminAuthVO">
+		/* AuthMapper.selectAdminUser */
+	    select ad.admin_id as user_id	
+	         , ad.role_id as user_type	
+	         , ad.dept_id
+	         , ad.password as password	
+	         , ad.admin_nm as user_name	
+	         , ad.email
+	         , ad.phone						
+	      from tb_admin ad
+		  join tb_admin_role ro
+	        on ad.role_id = ro.role_id
+	      join tb_admin_dept de 
+	        on ad.dept_id = de.dept_id 
+         where ad.admin_id = #{adminId}                   	 
+	</select>
+	
+		
+</mapper>

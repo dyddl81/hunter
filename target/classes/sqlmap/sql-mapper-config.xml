@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+    </settings>
+
+    <typeAliases>
+    
+    	<typeAlias type="co.kr.hunter.common.util.CamelHashMap" alias="CamelHashMap" />
+    	
+        <!-- 관리자 인증 -->
+        <typeAlias alias="adminAuthVO"  type="co.kr.hunter.auth.domain.AdminAuthVO"/>
+
+	    <!-- 사용자 인증 -->
+        <typeAlias alias="authVO"  type="co.kr.hunter.auth.domain.AuthVO"/>
+                    	
+    	<!-- 신청서 -->
+        <typeAlias alias="applicationVO"  type="co.kr.hunter.client.domain.ApplicationVo"/>
+        
+    	<!-- 관리자 신청서 -->
+        <typeAlias alias="adminApplicationVO"  type="co.kr.hunter.admin.domain.AdminApplicationVo"/>
+        
+    	<!-- 파일 -->
+        <typeAlias alias="fileVO"  type="co.kr.hunter.common.vo.FileVo"/>
+        
+    </typeAliases>
+</configuration>

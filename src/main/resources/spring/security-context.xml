@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:sec="http://www.springframework.org/schema/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd">
+	
+	<sec:http pattern="/robots.txt" security="none"/>
+	<sec:http pattern="/css/**" security="none"/>
+	<sec:http pattern="/js/**" security="none"/>
+	<sec:http pattern="/resources/**" security="none"/>
+ 	<sec:http pattern="\A/WEB-INF/views/.*\Z" request-matcher="regex" security="none"/>
+ 		
+	<!-- 이부분이 없으면 에러난다.. 우선은 alias태그만 넣어둔다. 나중에 디비에서 사용자 처리시 변경된다.-->
+	<!-- <sec:authentication-manager alias="authenticationManager" /> -->
+	<sec:authentication-manager id="adminAuthManager">
+		<sec:authentication-provider ref="adminAuthProvider"/>
+	</sec:authentication-manager>
+	<bean id="adminAuthProvider"  class="co.kr.hunter.auth.security.AdminAuthService"/>
+	<bean id="adminAuthDeniedHandler"  class="co.kr.hunter.auth.security.AdminAuthDeniedHandler"/>
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<!-- handler  설정시...
+	<bean id="adminAuthSuccessHandler" class="com.spring.securitytest.AdminAuthSuccessHandler">
+		<property name="defaultUrl" value="/admin/main" />
+	</bean>
+	
+	<bean id="adminAuthFailureHandler" class="com.spring.securitytest.AdminAuthFailHandler">
+		<property name="errorMessage"   value="" />
+		<property name="defaultFailUrl" value="/admin/login?status=error" />
+	</bean>
+	-->
+	
+	<sec:authentication-manager id="memberAuthManager">
+		<sec:authentication-provider ref="memberAuthProvider"/>
+	</sec:authentication-manager>
+	<bean id="memberAuthProvider" class="co.kr.hunter.auth.security.MemberAuthService"/>
+	<bean id="memberAuthDeniedHandler"  class="co.kr.hunter.auth.security.MemberAuthDeniedHandler"/>
+	
+	<!-- bean id="authSuccessHandler" class="or.kr.wbiz.o.auth.security.LoginSuccessHandler">
+		<property name="defaultUrl" value="/member" />
+	</bean>
+	
+	<bean id="authFailureHandler" class="or.kr.wbiz.o.auth.security.LoginFailureHandler">
+		<property name="errorMessage"   value="" />
+		<property name="defaultFailUrl" value="/member/login?status=error" />
+	</bean-->
+	
+	<!-- secured method --> 
+	<sec:global-method-security secured-annotations="enabled" /> 
+	
+	<!-- 인증예외처리 -->
+    <!-- <sec:http pattern="/cmmn3th/**"     security="none" /> -->
+	
+	<!-- 
+	 * 멀티 로그인인 경우  <sec:http auto-config="true" use-expressions="true"> 인 속성에
+	   pattern="/admin/**" 을 넣어주어서  구분을 해주어야 된다..
+	 * intercept-url 에 없는 경우 ( 예로 /home )는 permitAll 이 적용된다. 
+	-->
+	<!--************************************************************************-->
+	<!-- admin security -->
+	<sec:http 
+		pattern="/admin/**" 
+		auto-config="true" 
+		use-expressions="true"
+		authentication-manager-ref="adminAuthManager"	
+		
+	> 
+		<!-- csrf 사용여부 - true:사용안함 , false:사용함 -->
+		<sec:csrf disabled="false"/>
+		 
+		<sec:access-denied-handler ref="adminAuthDeniedHandler"/>
+		
+		<!-- 
+		중복되는 패턴이 있으면 에러난다.
+		나열한 순서대로 권한이 적용된다.
+		일반적인 것을 맨 아래로,특수한 경우가 위로 . 그래야 권한이 중복이 안된다. 중복되는 경우 리디렉션이 많아서 죽을수도.
+		-->
+		<sec:intercept-url pattern="/admin/login"  access="permitAll" />
+		<sec:intercept-url pattern="/admin/logDuplicate"  access="permitAll" />
+		<sec:intercept-url pattern="/admin/accessDenied"  access="permitAll" />
+		<sec:intercept-url pattern="/admin/**"     access="hasAnyRole('ROLE_MASTER','ROLE_ADMIN')" />
+		
+		<!-- 로그인 시 처리
+		login-processing-url 에 정의된  컨트롤러는 정의하지 않아도 된다 .. 
+		로그인에서 action 경로가  login-processing-url 에 정의된 경로로 오면 spring secutity 가 inteerceptor 하여
+		처리후 성공하면 default-target-url , 실패하면 authentication-failure-url 화면으로 보낸다. 
+		또는 핸들러로 보낸다.
+		authentication-failure-handler-ref="adminAuthFailureHandler" : 로그인 실패시 핸들러
+		authentication-failure-url="/admin/login?fail=true"
+		-->
+		<sec:form-login 
+			login-page="/admin/login" 
+			username-parameter="admin_id" 
+			password-parameter="admin_pw"
+			login-processing-url="/admin/loginproc"
+			default-target-url="/admin/loginSuccess"
+			authentication-failure-url="/admin/login?status=fail"
+		/> 
+		
+		<!-- 로그아웃 시 처리
+		 logout-url : 로그아웃 처리에 대한 URL. form태그의 action 속성에 지정한 값. (default: POST /logout)
+		 logout-success-url : 로그아웃 성공시, 이동할 URL. (default: /login?logout)
+		 success-handler-ref : 로그아웃 성공시, logout-success-url 이 아닌 핸들러로 리다이렉트
+		 invalidate-session : 로그아웃 시, session을 무효화할 지 선택. (default: true)
+		 delete-cookies : 로그아웃 성공시, 삭제할 쿠키 이름 지정
+		-->
+		<sec:logout 
+			logout-url="/admin/logout" 
+			logout-success-url="/admin/login?status=logout"
+			invalidate-session="true" 
+			delete-cookies ="true" 
+		/> 
+		
+		<!-- 중복 세션관리 
+		max-sessions : 중복 로그인 가능한 세션 수
+		error-if-maximum-exceeded : true-첫번째 로그인을 남기고 이루 세션을 삭제한다.false-마지막 세션을 살리고 이전 세션을 삭제한다. 
+		expired-url : 중복 로그인 발생시 이동할 경로
+		-->
+		<sec:session-management invalid-session-url="/admin/login"> 
+			<sec:concurrency-control 
+				max-sessions="1" 
+				error-if-maximum-exceeded="false" 
+				expired-url="/admin/loginDuplicate"
+			/> 
+		</sec:session-management> 
+		
+	</sec:http> 
+	
+	 
+	<!--************************************************************************-->
+	<!-- member security -->
+	<sec:http 
+		pattern="/member/**" 
+		auto-config="true" 
+		use-expressions="true"
+		authentication-manager-ref="memberAuthManager"
+	> 
+		
+		<!-- csrf 사용여부 - true:사용안함 , false:사용함 -->
+		<sec:csrf disabled="false"/> 
+		
+		<sec:access-denied-handler ref="memberAuthDeniedHandler"/>
+		
+		<!-- 
+		중복되는 패턴이 있으면 에러난다.
+		나열한 순서대로 권한이 적용된다.
+		일반적인 것을 맨 아래로,특수한 경우가 위로 . 그래야 권한이 중복이 안된다. 중복되는 경우 리디렉션이 많아서 죽을수도.
+		-->
+		<sec:intercept-url pattern="/member/login" access="permitAll" />
+		<sec:intercept-url pattern="/member/logDuplicate"  access="permitAll" />
+		<sec:intercept-url pattern="/member/accessDenied"  access="permitAll" />
+		<sec:intercept-url pattern="/member/introduction"  access="permitAll" />
+		<sec:intercept-url pattern="/member/**"    access="hasAnyRole('ROLE_MEMBER')" />
+		
+		<!-- 로그인 시 처리
+		login-page : 로그인 화면 주소
+		username-parameter : 로그인 화면상의  아이디 값에 해당하는 input tag의  id 값
+		password-parameter : 로그인 화면상의  암호 값에 해당하는 input tag의  id 값
+		login-processing-url : 로그인 처리를 하는 화면 주소 -> 별도로 만들 필요없다.
+		default-target-url : 로그인 성공이 되면 이동할 주소
+		authentication-failure-url : 로그인 실패시 호출할 주소 지정
+		always-use-default-target : 
+		-->
+		<sec:form-login 
+			login-page="/member/login" 
+			username-parameter="member_id" 
+			password-parameter="member_pw"
+			login-processing-url="/member/loginproc"
+			default-target-url="/member/loginSuccess"
+			authentication-failure-url="/member/login?status=fail"
+		/> 
+		
+		<!-- 로그아웃 시 처리
+		 logout-url : 로그아웃 처리에 대한 URL. form태그의 action 속성에 지정한 값. (default: POST /logout)
+		 logout-success-url : 로그아웃 성공시, 이동할 URL. (default: /login?logout)
+		 success-handler-ref : 로그아웃 성공시, logout-success-url 이 아닌 핸들러로 리다이렉트
+		 invalidate-session : 로그아웃 시, session을 무효화할 지 선택. (default: true)
+		 delete-cookies : 로그아웃 성공시, 삭제할 쿠키 이름 지정
+		-->
+		<sec:logout 
+			logout-url="/member/logout" 
+			logout-success-url="/member/login?status=logout"
+			invalidate-session="true" 
+			delete-cookies ="true" 
+		/> 
+		
+		<!-- 중복 세션관리 
+		max-sessions : 중복 로그인 가능한 세션 수
+		error-if-maximum-exceeded : true-첫번째 로그인을 남기고 이루 세션을 삭제한다.false-마지막 세션을 살리고 이전 세션을 삭제한다. 
+		expired-url : 중복 로그인 발생시 이동할 경로
+		-->
+		<sec:session-management invalid-session-url="/member/login"> 
+			<sec:concurrency-control 
+				max-sessions="1" 
+				error-if-maximum-exceeded="false" 
+				expired-url="/member/loginDuplicate"
+			/> 
+		</sec:session-management> 
+		
+	</sec:http> 
+	
+	
+</beans>

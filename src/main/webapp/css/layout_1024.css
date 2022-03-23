@@ -1,0 +1,60 @@
+
+@media only screen and (max-width:1400px){
+	.inner{padding:0 20px;}
+	#header #gnb .member{right:20px;}
+	.app_cont .app_data form .inp_date .input_basic{max-width:calc(33.33% - 16px);}
+	.intro_head .intro_btn{right:20px;}
+}
+
+@media only screen and (max-width:1280px){
+}
+
+@media only screen and (max-width:1024px){
+	.dv_mob{display:block}	
+	.dv_pc{display:none !important;}
+
+	#header .heder_btn{display:block; position:absolute; right:20px; top:26px; z-index:10; cursor:pointer;}
+	#header .heder_btn span{display:block; width:24px; height:2px; margin-top:4px; background: #666666;transition:all .3s;}
+	#header .heder_btn.on span:nth-child(1){transform:translateY(4px) rotate(-45deg)}
+	#header .heder_btn.on span:nth-child(2){opacity: 0;}
+	#header .heder_btn.on span:nth-child(3){transform:translateY(-8px) rotate(45deg)}
+	#header #gnb{position:fixed;top:70px; right:-100%;width:100%; height:100vh;clear:both; text-align:left; background-color:#fff; transition:all .3s;}
+	#header.in_mob #gnb{right:0;}
+	#header #gnb > ul{width:100%;margin-right:0;clear:both;}
+	#header #gnb > ul > li{display:block; height:90px;padding-left:20px;border-bottom:1px solid #F4F5F6;vertical-align:middle;}
+	#header #gnb > ul > li > a{position:relative;display:inline-block;width:100%;line-height:90px;}
+	#header #gnb > ul > li:hover a{color: #00AE97;}
+	#header #gnb > ul > li > a::after{content:"";display:block; position:absolute; right:35px; top:37px; width:10px; height:15px; background-image:url("/resources/img/gnb_btn_ico.png");}
+	#header #gnb .member{position:absolute; left:50%; bottom:100px;transform:translatex(-50%);width:120px; height:34px;}
+	#header #gnb .member span{display:block; width:100%; height:100%;line-height:1;}
+	#header #gnb .member .me_logout{display:none;}
+	#header #gnb .member a{line-height:32px;font-size: 13px;}
+
+	.app_head li.on{width:42px;height:42px;}
+	.app_cont{padding:0;border:0;}
+	.app_cont .app_sub{clear:both;}
+	.app_cont .app_data{max-width:1024px;width:100%;padding:0; padding-top:50px;clear:both;}
+	.app_cont .app_data .year_type{max-width:1024px;}
+	.app_cont .app_data .agree_all input{position:absolute;}
+	.app_cont .app_data li .chkText input{position:absolute;}
+	.app_cont .app_data form .input_basic {max-width:1024px;}
+	.app_cont .app_data form .option .option_label {max-width:1024px;}
+
+	#business_type, #business_status, #app_ability{max-width:1024px;width:100%;}
+	#business_type + span{display: none;}
+	#business_status{margin-top:8px;}
+
+
+	#app_ability.option .option_label{max-width:100%;text-align:left;}
+	.app_cont .app_data form .major{max-width:1024px;width:100%;margin-left:0;margin-top:8px;}
+
+	.app_list{overflow-x:scroll;}
+	.app_list .tbl_area{width:1100px;}
+	.app_list::-webkit-scrollbar {height:8px;}
+	.app_list::-webkit-scrollbar-track{background: #E6E8EA;}
+	.app_list::-webkit-scrollbar-thumb {background: #666;}
+	.app_list::-webkit-scrollbar-button {width: 0;height: 0;}
+
+	.intro_cont .phone_banner .phone_area .dv_mob{display:inline-block;}
+
+}

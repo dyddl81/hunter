@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="co.kr.hunter.auth.mapper.AuthMapper">
+ 
+    <select id="selectMemberUser" resultType="authVO">
+		/* AuthMapper.selectMemberUser */
+        select op_user.user_id						/* 사용자아이디 */
+             , op_user.user_pwd as password			/* 사용자비밀번호 */
+             , op_user.user_nm	as user_name		/* 사용자명 */
+             , op_user.email						/* 이메일 */
+             , op_user_op.mobile as phone			/* 휴대전화 */	
+             , op_user_op.birthday	as birth_date	/* 생년월일 */
+             , op_user_op.wp_nm as company_nm			/* 직장명 */
+             , op_user_op.cp_num as business_num		/* 사업자등록번호 */
+             , op_user_op.corp_num	as corporation_num	/* 법인등록번호 */
+       	  from op_user op_user
+       	  join op_user_option op_user_op
+            on op_user.user_id = op_user_op.user_id
+         where op_user.user_id  = #{userId}
+           and op_user.user_state = '1001'         
+	</select>
+	
+		
+</mapper>
