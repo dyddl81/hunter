@@ -6,18 +6,21 @@
     <definition name="clientMain" template="/WEB-INF/views/layout/client/main.jsp">
     	<put-attribute name="header" value="/WEB-INF/views/layout/client/header.jsp" />
         <put-attribute name="body" />
+        <put-attribute name="footer" value="/WEB-INF/views/layout/client/footer.jsp" />
     </definition>
     
     <definition name="client/*/*" extends="clientMain">
         <put-attribute name="body" value="/WEB-INF/views/client/{1}/{2}.jsp"/>
     </definition>
 
-    <definition name="tClientLogin" template="/WEB-INF/views/member/login.jsp">
+    <definition name="tClientLogin" template="/WEB-INF/views/client/login.jsp">
     </definition>        
         
     <definition name="adminMain" template="/WEB-INF/views/layout/admin/main.jsp">
+    	<put-attribute name="menu" value="/WEB-INF/views/layout/admin/menu.jsp" />
     	<put-attribute name="header" value="/WEB-INF/views/layout/admin/header.jsp" />
         <put-attribute name="body" />
+        <put-attribute name="footer" value="/WEB-INF/views/layout/admin/footer.jsp" />
     </definition>
 
     <definition name="admin/*/*" extends="adminMain">

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="co.kr.hunter.client.mapper.MileageMapper">
+ 
+    <select id="selectApplicationList" resultType="mileageVo">
+	   /* ApplicationMapper.selectApplicationList */
+	   <include refid="co.kr.hunter.common.mapper.CommonMapper.pagePrefix" />
+	   select count(1) over() as total_count
+			, row_number() over() as rnum
+			, tb.*
+		from (
+			  select *
+			    from tb_application
+			 )tb 
+	   where 1 = 1	  
+	   <include refid="co.kr.hunter.common.mapper.CommonMapper.pageSubfix" /> 
+	</select>
+	
+    <select id="selectApplicationCnt" resultType="int">
+	   /* ApplicationMapper.selectApplicationCnt */
+		select count(1) as cnt
+	      from tb_application app 
+		 where app.user_id = #{userId}
+           and substr(app.application_id, 1, 3) = 'APP'
+	</select>
+	
+    <select id="selectApplication" resultType="mileageVo">
+	   /* ApplicationMapper.selectApplication */
+		select app.*
+	      from tb_application app 
+		 where app.user_id = #{userId}
+		 order by application_id desc
+	</select>
+	
+    <select id="selectApplicationInfo" resultType="mileageVo">
+	   /* ApplicationMapper.selectApplicationInfo */
+		select app.*
+	      from tb_application app 
+		 where app.application_id = #{applicationId}
+		   and app.user_id = #{userId}
+	</select>
+	
+	<insert id="insertApplication" >
+		/* ApplicationMapper.insertApplication */
+	    <selectKey resultType="string" keyProperty="applicationId" order="BEFORE">
+	        select concat('APP_', ifnull(lpad(max(ifnull(substr(application_id, 5), 0)) + 1 , 10 , '0'), '0000000001')) from tb_application
+	    </selectKey>		
+	insert into tb_application
+                (
+                  application_id
+                , user_id
+                , step
+                , created_id 		
+                , created_datetime		
+                )
+                values
+		        (
+                   #{applicationId}
+                 , #{userId}
+                 , '1'
+                 , #{createdId}
+                 , now()
+		        )
+	</insert>
+
+	<update id="updateApplication">
+		 /* ApplicationMapper.updateApplication */	
+		 update tb_application
+		    set updated_id				= #{updatedId}
+			  , updated_datetime 		= now()
+			  <if test="itemNm neq '' and itemNm != null">
+			  , item_nm 				= #{itemNm}
+			  </if>		
+			  <if test="applicationType neq '' and applicationType != null">
+			  , application_type 		= #{applicationType}
+			  </if>		
+			  <if test="area neq '' and area != null">
+			  , area 					= #{area}
+			  </if>		
+			  <if test="businessType neq '' and businessType != null">
+			  , business_type 			= #{businessType}
+			  </if>		
+			  <if test="foundingDate neq '' and foundingDate != null">
+			  , founding_date 			= #{foundingDate}
+			  </if>		
+			  <if test="appNm neq '' and appNm != null">
+			  , app_nm 					= #{appNm}
+			  </if>		
+			  <if test="birthDate neq '' and birthDate != null">
+			  , birth_date 				= #{birthDate}
+			  </if>		
+			  <if test="phone neq '' and phone != null">
+			  , phone 					= #{phone}
+			  </if>		
+			  <if test="email neq '' and email != null">
+			  , email 					= #{email}
+			  </if>		
+			  <if test="lastEducational neq '' and lastEducational != null">
+			  , last_educational 		= #{lastEducational}
+			  </if>		
+			  <if test="major neq '' and major != null">
+			  , major 					= #{major}
+			  </if>		
+			  <if test="majorCareer neq '' and majorCareer != null">
+			  , major_career 			= #{majorCareer}
+			  </if>		
+			  <if test="womenBusinessCert neq '' and womenBusinessCert != null">
+			  , women_business_cert 	= #{womenBusinessCert}
+			  </if>		
+			  <if test="companyNm neq '' and companyNm != null">
+			  , company_nm 				= #{companyNm}
+			  </if>		
+			  <if test="businessNum neq '' and businessNum != null">
+			  , business_num 			= #{businessNum}
+			  </if>		
+			  <if test="sectors neq '' and sectors != null">
+			  , sectors				 	= #{sectors}
+			  </if>		
+			  <if test="businessCondition neq '' and businessCondition != null">
+			  , business_condition 		= #{businessCondition}
+			  </if>		
+			  <if test="corporationNum neq '' and corporationNum != null">
+			  , corporation_num 		= #{corporationNum}
+			  </if>		
+			  <if test="majorIndustries neq '' and majorIndustries != null">
+			  , major_industries 		= #{majorIndustries}
+			  </if>		
+			  <if test="establishmentDate neq '' and establishmentDate != null">
+			  , establishment_date 		= #{establishmentDate}
+			  </if>		
+			  <if test="previousYearSales neq '' and previousYearSales != null">
+			  , previous_year_sales 	= #{previousYearSales}
+			  </if>		
+			  <if test="previousYearSales2 neq '' and previousYearSales2 != null">
+			  , previous_year_sales2 	= #{previousYearSales2}
+			  </if>		
+			  <if test="fulltimeWorker neq '' and fulltimeWorker != null">
+			  , fulltime_worker 		= #{fulltimeWorker}
+			  </if>		
+			  <if test="fulltimeWorker2 neq '' and fulltimeWorker2 != null">
+			  , fulltime_worker2 		= #{fulltimeWorker2}
+			  </if>		
+			  <if test="investmentAttractionYn neq '' and investmentAttractionYn != null">
+			  , investment_attraction_yn 	= #{investmentAttractionYn}
+			  </if>		
+			  <if test="investmentAttraction neq '' and investmentAttraction != null">
+			  , investment_attraction 	= #{investmentAttraction}
+			  </if>		
+			  <if test="exportMoneyYn neq '' and exportMoneyYn != null">
+			  , export_money_yn 		= #{exportMoneyYn}
+			  </if>		
+			  <if test="exportMoney neq '' and exportMoney != null">
+			  , export_money 			= #{exportMoney}
+			  </if>		
+			  <if test="capital neq '' and capital != null">
+			  , capital 				= #{capital}
+			  </if>		
+			  <if test="businessAddress neq '' and businessAddress != null">
+			  , business_address 		= #{businessAddress}
+			  </if>		
+			  <if test="step neq '' and step != null">
+			  , step 					= #{step}
+			  </if>				  
+	      where application_id = #{applicationId}
+	        and user_id = #{userId}
+	</update>
+	
+	<delete id="deleteApplication">
+		/* ApplicationMapper.deleteApplication */		
+		delete 
+		  from tb_application 
+		 where application_id = #{applicationId}
+		   and user_id = #{userId}
+	</delete>
+	
+	<insert id="insertApplicationFile">
+	/* ApplicationMapper.insertApplicationFile */
+	insert into tb_file
+                (
+                  code_id
+                , code
+                , user_id
+                , file_nm
+                , file_size
+                , file_path
+                )
+                values
+		        (
+                   #{codeId}
+                 , #{code}
+                 , #{userId}
+                 , #{fileNm}
+                 , #{fileSize}
+                 , #{filePath}
+		        )
+	</insert>
+	
+	<delete id="deleteApplicationFile" >
+	/* ApplicationMapper.deleteApplicationFile */
+	delete from tb_file
+	 where 1 = 1 
+	   <if test="codeId neq '' and codeId != null">
+	   and code_id = #{codeId}
+	   </if>
+	   <if test="fileNo neq '' and fileNo != null">
+	   and file_no = #{fileNo}
+	   </if>
+	   and user_id = #{userId}
+	</delete>
+	
+	<select id="selectApplicationFileList" resultType="fileVO">
+	/* ApplicationMapper.selectApplicationFileList */
+	select tb.*
+	  from tb_file tb
+	 where 1 = 1
+	   and tb.code_id = #{codeId}
+   	   and tb.user_id = #{userId}	   
+	</select>
+	
+	<select id="selectApplicationFile" resultType="fileVO">
+	/* ApplicationMapper.selectApplicationFile */
+	select tb.*
+	  from tb_file tb
+	 where 1 = 1
+	   and tb.file_no = #{fileNo}
+   	   and tb.user_id = #{userId}
+	</select>
+			
+</mapper>

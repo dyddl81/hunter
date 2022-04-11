@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import co.kr.hunter.auth.domain.AdminAuthVO;
+import co.kr.hunter.auth.domain.AdminAuthVo;
 import co.kr.hunter.auth.mapper.AdminAuthMapper;
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,7 +37,7 @@ public class AdminAuthService implements AuthenticationProvider {
 		log.info("넘어온 정보: id:{} , pwd:{}, pwdE:{}", admin_id , admin_pw, passwordEncoder.encode(admin_pw));
 		
 		boolean passwordCheck = false;
-		AdminAuthVO adminAuthVo = null;
+		AdminAuthVo adminAuthVo = null;
 		
 		// 정보가 없으면 나간다.
 		if ( admin_id == null || admin_id == "" ) {

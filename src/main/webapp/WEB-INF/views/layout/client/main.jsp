@@ -3,51 +3,39 @@
 <%@	taglib prefix="c" 	 uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html lang="ko">
- <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1,user-scalable=no"/>
-  <meta name="format-detection" content="telephone=no" />
-  <meta name="title" content="Wbiz 여성기업 종압정보 포털" />
-  <meta name="subject" content="" />
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <title>wbiz 여성기업 종합정보포털</title>
+<html lang="en">
+<head>
+	<title>Eduport - LMS, Education and Course Theme</title>
 
-  <link rel="stylesheet" type="text/css" href="/css/import.css">
-  <script src="/js/jquery-1.11.3.min.js"></script>
- </head>
- 
- <body oncontextmenu="return false">
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Webestica.com">
+	<meta name="description" content="Eduport- LMS, Education and Course Theme">
 
-	<div id="skipToContent" class="skipnav">
-		<a href="#container">본문 바로가기</a>
-	</div>
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/assets/images/favicon.ico">
 
-	<!-- [s] wrap -->
-	<div id="wrapper">	
-	 
+	<!-- Google Font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" type="text/css" href="/assets/vendor/font-awesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+
+	<!-- Theme CSS -->
+	<link id="style-switch" rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+</head>
+
+ <body>
+	<main>
 		<tiles:insertAttribute name="header" />
 		<tiles:insertAttribute name="body" />
-        
-	</div>
-	
-	<script>
-		function noEvent() {
-		    if (event.keyCode == 116) {
-		        event.keyCode= 2;
-		        return false;
-		    }
-		    else if(event.ctrlKey && (event.keyCode==78 || event.keyCode == 82))
-		    {
-		        return false;
-		    }
-		}
-		document.onkeydown = noEvent;
-	</script>
-
-	<!-- [e] wrap -->        
-	<script src="/js/publish.js"></script>
+		<tiles:insertAttribute name="footer" />
+	</main>
 
  </body>
 </html>

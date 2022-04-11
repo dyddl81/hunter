@@ -8,9 +8,7 @@
        http://www.springframework.org/schema/security/spring-security.xsd">
 	
 	<sec:http pattern="/robots.txt" security="none"/>
-	<sec:http pattern="/css/**" security="none"/>
-	<sec:http pattern="/js/**" security="none"/>
-	<sec:http pattern="/resources/**" security="none"/>
+	<sec:http pattern="/assets/**" security="none"/>
  	<sec:http pattern="\A/WEB-INF/views/.*\Z" request-matcher="regex" security="none"/>
  		
 	<!-- 이부분이 없으면 에러난다.. 우선은 alias태그만 넣어둔다. 나중에 디비에서 사용자 처리시 변경된다.-->
@@ -80,7 +78,8 @@
 		<sec:intercept-url pattern="/admin/login"  access="permitAll" />
 		<sec:intercept-url pattern="/admin/logDuplicate"  access="permitAll" />
 		<sec:intercept-url pattern="/admin/accessDenied"  access="permitAll" />
-		<sec:intercept-url pattern="/admin/**"     access="hasAnyRole('ROLE_MASTER','ROLE_ADMIN')" />
+		<!-- sec:intercept-url pattern="/admin/**"     access="hasAnyRole('ROLE_MASTER','ROLE_ADMIN')" /-->
+		<sec:intercept-url pattern="/admin/**"     access="permitAll" />
 		
 		<!-- 로그인 시 처리
 		login-processing-url 에 정의된  컨트롤러는 정의하지 않아도 된다 .. 
@@ -132,7 +131,7 @@
 	<!--************************************************************************-->
 	<!-- member security -->
 	<sec:http 
-		pattern="/member/**" 
+		pattern="/client/**" 
 		auto-config="true" 
 		use-expressions="true"
 		authentication-manager-ref="memberAuthManager"
@@ -148,11 +147,12 @@
 		나열한 순서대로 권한이 적용된다.
 		일반적인 것을 맨 아래로,특수한 경우가 위로 . 그래야 권한이 중복이 안된다. 중복되는 경우 리디렉션이 많아서 죽을수도.
 		-->
-		<sec:intercept-url pattern="/member/login" access="permitAll" />
-		<sec:intercept-url pattern="/member/logDuplicate"  access="permitAll" />
-		<sec:intercept-url pattern="/member/accessDenied"  access="permitAll" />
-		<sec:intercept-url pattern="/member/introduction"  access="permitAll" />
-		<sec:intercept-url pattern="/member/**"    access="hasAnyRole('ROLE_MEMBER')" />
+		<sec:intercept-url pattern="/client/login" access="permitAll" />
+		<sec:intercept-url pattern="/client/logDuplicate"  access="permitAll" />
+		<sec:intercept-url pattern="/client/accessDenied"  access="permitAll" />
+		<sec:intercept-url pattern="/client/introduction"  access="permitAll" />
+		<!-- sec:intercept-url pattern="/member/**"    access="hasAnyRole('ROLE_MEMBER')" /-->
+		<sec:intercept-url pattern="/client/**"    access="permitAll" />
 		
 		<!-- 로그인 시 처리
 		login-page : 로그인 화면 주소
@@ -164,12 +164,12 @@
 		always-use-default-target : 
 		-->
 		<sec:form-login 
-			login-page="/member/login" 
+			login-page="/client/login" 
 			username-parameter="member_id" 
 			password-parameter="member_pw"
-			login-processing-url="/member/loginproc"
-			default-target-url="/member/loginSuccess"
-			authentication-failure-url="/member/login?status=fail"
+			login-processing-url="/client/loginproc"
+			default-target-url="/client/loginSuccess"
+			authentication-failure-url="/client/login?status=fail"
 		/> 
 		
 		<!-- 로그아웃 시 처리
@@ -180,8 +180,8 @@
 		 delete-cookies : 로그아웃 성공시, 삭제할 쿠키 이름 지정
 		-->
 		<sec:logout 
-			logout-url="/member/logout" 
-			logout-success-url="/member/login?status=logout"
+			logout-url="/client/logout" 
+			logout-success-url="/client/login?status=logout"
 			invalidate-session="true" 
 			delete-cookies ="true" 
 		/> 
@@ -191,11 +191,11 @@
 		error-if-maximum-exceeded : true-첫번째 로그인을 남기고 이루 세션을 삭제한다.false-마지막 세션을 살리고 이전 세션을 삭제한다. 
 		expired-url : 중복 로그인 발생시 이동할 경로
 		-->
-		<sec:session-management invalid-session-url="/member/login"> 
+		<sec:session-management invalid-session-url="/client/login"> 
 			<sec:concurrency-control 
 				max-sessions="1" 
 				error-if-maximum-exceeded="false" 
-				expired-url="/member/loginDuplicate"
+				expired-url="/client/loginDuplicate"
 			/> 
 		</sec:session-management> 
 		

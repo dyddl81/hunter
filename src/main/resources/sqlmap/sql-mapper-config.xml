@@ -11,19 +11,50 @@
     	<typeAlias type="co.kr.hunter.common.util.CamelHashMap" alias="CamelHashMap" />
     	
         <!-- 관리자 인증 -->
-        <typeAlias alias="adminAuthVO"  type="co.kr.hunter.auth.domain.AdminAuthVO"/>
+        <typeAlias alias="adminAuthVo"  type="co.kr.hunter.auth.domain.AdminAuthVo"/>
 
 	    <!-- 사용자 인증 -->
-        <typeAlias alias="authVO"  type="co.kr.hunter.auth.domain.AuthVO"/>
+        <typeAlias alias="authVo"  type="co.kr.hunter.auth.domain.AuthVo"/>
                     	
-    	<!-- 신청서 -->
-        <typeAlias alias="applicationVO"  type="co.kr.hunter.client.domain.ApplicationVo"/>
-        
-    	<!-- 관리자 신청서 -->
-        <typeAlias alias="adminApplicationVO"  type="co.kr.hunter.admin.domain.AdminApplicationVo"/>
-        
     	<!-- 파일 -->
-        <typeAlias alias="fileVO"  type="co.kr.hunter.common.vo.FileVo"/>
+        <typeAlias alias="fileVo"  type="co.kr.hunter.common.vo.FileVo"/>
+        
+    	<!-- Admin History -->
+        <typeAlias alias="adminHistoryVo"  type="co.kr.hunter.admin.domain.AdminHistoryVo"/>
+                    	
+    	<!-- Admin Inquiry -->
+        <typeAlias alias="adminInquiryVo"  type="co.kr.hunter.admin.domain.AdminInquiryVo"/>
+        
+    	<!-- Admin Main -->
+        <typeAlias alias="adminMainVo"  type="co.kr.hunter.admin.domain.AdminMainVo"/>
+        
+    	<!-- Admin Mileage -->
+        <typeAlias alias="adminMileageVo"  type="co.kr.hunter.admin.domain.AdminMileageVo"/>
+        
+    	<!-- Admin Project -->
+        <typeAlias alias="adminProjectVo"  type="co.kr.hunter.admin.domain.AdminProjectVo"/>
+        
+    	<!-- Admin Setting -->
+        <typeAlias alias="adminSettingVo"  type="co.kr.hunter.admin.domain.AdminSettingVo"/>
+        
+    	<!-- Admin User -->
+        <typeAlias alias="adminUserVo"  type="co.kr.hunter.admin.domain.AdminUserVo"/>
+        
+    	<!-- Inquiry -->
+        <typeAlias alias="inquiryVo"  type="co.kr.hunter.client.domain.InquiryVo"/>        
+        
+    	<!-- Main -->
+        <typeAlias alias="mainVo"  type="co.kr.hunter.client.domain.MainVo"/>        
+        
+    	<!-- Main -->
+        <typeAlias alias="mileageVo"  type="co.kr.hunter.client.domain.MileageVo"/>        
+        
+    	<!-- Main -->
+        <typeAlias alias="projectVo"  type="co.kr.hunter.client.domain.ProjectVo"/>        
+        
+    	<!-- Main -->
+        <typeAlias alias="userVo"  type="co.kr.hunter.client.domain.UserVo"/>        
         
     </typeAliases>
+    
 </configuration>

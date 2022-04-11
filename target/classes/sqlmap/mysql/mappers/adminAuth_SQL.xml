@@ -3,7 +3,7 @@
  
 <mapper namespace="co.kr.hunter.auth.mapper.AdminAuthMapper">
  
-    <select id="selectAdminUser" resultType="adminAuthVO">
+    <select id="selectAdminUser" resultType="adminAuthVo">
 		/* AuthMapper.selectAdminUser */
 	    select ad.admin_id as user_id	
 	         , ad.role_id as user_type	

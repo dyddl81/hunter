@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import co.kr.hunter.auth.domain.AuthVO;
+import co.kr.hunter.auth.domain.AuthVo;
 import co.kr.hunter.auth.mapper.AuthMapper;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,7 +32,7 @@ public class MemberAuthService implements AuthenticationProvider {
 		log.info("MemberAuthService: id:{} , pwd:{}", user_id , user_pw);
 		
 		boolean passwordCheck = false;
-		AuthVO authVo = null;
+		AuthVo authVo = null;
 		
 		// 정보가 없으면 나간다.
 		if ( user_id == null || user_id == "" ) {

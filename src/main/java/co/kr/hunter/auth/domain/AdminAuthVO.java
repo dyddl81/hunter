@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.Data;
 
 @Data
-public class AdminAuthVO implements UserDetails{
+public class AdminAuthVo implements UserDetails{
 
     /** 사용자ID */
     private String userId;

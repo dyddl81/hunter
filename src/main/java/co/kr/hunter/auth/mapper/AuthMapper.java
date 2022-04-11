@@ -2,7 +2,7 @@ package co.kr.hunter.auth.mapper;
 
 import org.springframework.stereotype.Repository;
 
-import co.kr.hunter.auth.domain.AuthVO;
+import co.kr.hunter.auth.domain.AuthVo;
 
 @Repository
 public interface AuthMapper {
@@ -11,6 +11,6 @@ public interface AuthMapper {
      * 사용자 인증
      * @return
      */	
-    AuthVO selectMemberUser(String userId);
+    AuthVo selectMemberUser(String userId);
     
 }

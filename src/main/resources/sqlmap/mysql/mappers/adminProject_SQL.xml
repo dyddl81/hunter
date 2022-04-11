@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="co.kr.hunter.admin.mapper.AdminProjectapper">
+
+    <select id="selectAdminApplicationList" resultType="adminProjectVo">
+	   /* AdminApplicationMapper.selectAdminApplicationList */
+	   <include refid="co.kr.hunter.common.mapper.CommonMapper.pagePrefix" />
+	   select count(1) over() as total_count
+			, row_number() over() as rnum
+			, tb.*
+		from (
+			  select *
+			    from tb_application
+			 )tb 
+	   where 1 = 1	  
+		<if test="searchKeyword neq '' and searchKeyword != null">
+			<choose>
+				<when test="searchKeyword eq '창업기업'">and tb.applicationType = '1'</when>
+				<when test="searchKeyword eq '예비창업'">and tb.applicationType = '2'</when>
+				<when test="searchKeyword eq '작성대기'">and tb.step = '1'</when>
+				<when test="searchKeyword eq '작성중'">and tb.step in ('2','3')</when>
+				<when test="searchKeyword eq '작성완료'">and tb.step = '4' </when>
+				<otherwise>
+					and (
+						tb.application_id like concat('%',#{searchKeyword}) or
+						tb.item_nm like concat('%',#{searchKeyword},'%') or
+						tb.company_nm like concat('%',#{searchKeyword},'%') or
+						tb.app_nm like concat('%',#{searchKeyword},'%') or
+						tb.phone like concat('%',#{searchKeyword},'%') or
+						tb.email like concat('%',#{searchKeyword},'%')
+						)
+				</otherwise>					
+			</choose>
+		</if>		   
+	   <include refid="co.kr.hunter.common.mapper.CommonMapper.pageSubfix" />
+	</select>
+	
+    <select id="selectAdminApplication" resultType="adminProjectVo">
+	   /* AdminApplicationMapper.selectAdminApplication */
+		select app.*
+	      from tb_application app
+		 where app.application_id = #{applicationId}
+	</select>
+	
+	<select id="selectAdminApplicationFileList" resultType="fileVO">
+		/* ApplicationMapper.selectAdminApplicationFileList */
+		select tb.*
+		  from tb_file tb
+		 where 1 = 1
+		   and tb.code_id = #{codeId}
+	</select>	
+	
+	<delete id="deleteAdminApplication">
+		/* AdminApplicationMapper.deleteAdminApplication */		
+		delete from tb_application where application_id in 
+		<foreach collection="list" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+
+	<delete id="deleteAdminApplicationFile" >
+		/* ApplicationMapper.deleteAdminApplicationFile */
+		delete from tb_file where code_id in 
+		<foreach collection="list" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+		
+    <select id="selectAdminApplicationExcel" resultType="adminProjectVo">
+	   /* AdminApplicationMapper.selectAdminApplicationExcel */
+		select app.*, co1.*, co2.*
+	      from tb_application app
+	      join (
+	      	   select code_val
+	      	        , code_nm area_nm
+	      	     from tb_code 
+	      	    where code_id = 'AREA'
+	      	   )co1
+	      	on app.area = co1.code_val
+	      join (
+	      	   select code_val
+	      	        , code_nm last_educational_nm
+	      	     from tb_code 
+	      	    where code_id = 'EDUCATION'
+	      	   )co2
+	      	on app.last_educational = co2.code_val	      
+	     where 1 = 1
+ 	   <if test="list != null and list != ''">
+           and app.application_id in 
+        	<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+             #{item}
+            </foreach>									
+	   </if>		      
+	</select>
+			
+</mapper>

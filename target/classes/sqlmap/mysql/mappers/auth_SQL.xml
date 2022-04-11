@@ -3,7 +3,7 @@
  
 <mapper namespace="co.kr.hunter.auth.mapper.AuthMapper">
  
-    <select id="selectMemberUser" resultType="authVO">
+    <select id="selectMemberUser" resultType="authVo">
 		/* AuthMapper.selectMemberUser */
         select op_user.user_id						/* 사용자아이디 */
              , op_user.user_pwd as password			/* 사용자비밀번호 */

@@ -3,36 +3,48 @@
 <%@	taglib prefix="c" 	 uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html lang="ko">
- <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1,user-scalable=no"/>
-  <meta name="format-detection" content="telephone=no" />
-  <meta name="title" content="Wbiz 여성기업 종압정보 포털" />
-  <meta name="subject" content="" />
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <title>관리자 전체 신청자 상세정보</title>
+<html lang="en">
+<head>
+	<title>IT hunters</title>
 
-  <link rel="stylesheet" type="text/css" href="/css/import.css">
-  <script src="/js/jquery-1.11.3.min.js"></script>
-  <script src="/js/jquery.fileDownload.js"></script>
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Webestica.com">
+	<meta name="description" content="Eduport- LMS, Education and Course Theme">
 
- </head>
- <body>
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="<c:url value="/assets/images/favicon.ico" />">
 
-	<div id="skipToContent" class="skipnav">
-		<a href="#container">본문 바로가기</a>
-	</div>
+	<!-- Google Font -->
+	<link rel="preconnect" href="<c:url value="https://fonts.googleapis.com" />">
+	<link rel="preconnect" href="<c:url value="https://fonts.gstatic.com" />" crossorigin>
+	<link rel="stylesheet" href="<c:url value="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" />">
 
-	<!-- [s] wrap -->
-	<div id="wrapper">
-		<tiles:insertAttribute name="header" />
-		<tiles:insertAttribute name="body" />	
-	</div>
-	<!-- [e] wrap -->
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" type="text/css" href="<c:url value="/assets/vendor/font-awesome/css/all.min.css" />">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/assets/vendor/bootstrap-icons/bootstrap-icons.css" />">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/assets/vendor/apexcharts/css/apexcharts.css" />">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/assets/vendor/overlay-scrollbar/css/OverlayScrollbars.min.css" />">
 
-	<script src="/js/publish.js"></script>
+	<!-- Theme CSS -->
+	<link id="style-switch" rel="stylesheet" type="text/css" href="<c:url value="/assets/css/style.css" />">
 
- </body>
-</html>	
+</head>
+<body>
+	<!-- **************** MAIN CONTENT START **************** -->
+	<main>
+		<!-- [s] wrap -->
+		<tiles:insertAttribute name="menu" />
+		<!-- Page content START -->
+		<div class="page-content">		
+			<tiles:insertAttribute name="header" />
+			<tiles:insertAttribute name="body" />	
+		</div>
+		<!-- Page content END -->		
+		<tiles:insertAttribute name="footer" />	
+		<!-- [e] wrap -->
+	</main>
+	<!-- **************** MAIN CONTENT END **************** -->
+</body>
+</html>
