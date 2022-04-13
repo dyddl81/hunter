@@ -5,20 +5,18 @@
  
     <select id="selectAdminUser" resultType="adminAuthVo">
 		/* AuthMapper.selectAdminUser */
-	    select ad.admin_id as user_id	
-	         , ad.role_id as user_type	
-	         , ad.dept_id
-	         , ad.password as password	
-	         , ad.admin_nm as user_name	
-	         , ad.email
-	         , ad.phone						
-	      from tb_admin ad
-		  join tb_admin_role ro
-	        on ad.role_id = ro.role_id
-	      join tb_admin_dept de 
-	        on ad.dept_id = de.dept_id 
-         where ad.admin_id = #{adminId}                   	 
+		select mem.email as user_id
+		     , mem.role_id as user_type	
+		     , rol.role_nm
+		     , mem.member_no
+		     , mem.name as user_name
+		     , mem.phone
+		     , mem.password as password	
+		  from tb_member mem
+		  join tb_role rol
+		    on mem.role_id = rol.role_id
+		 where mem.role_id = 'ROLE_001'
+		   and mem.email = #{adminId}                	 
 	</select>
-	
 		
 </mapper>

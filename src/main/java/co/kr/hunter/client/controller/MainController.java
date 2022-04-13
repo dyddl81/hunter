@@ -28,8 +28,8 @@ public class MainController {
 	private MainService mainService;
 	
 	@GetMapping
-	public String selectApplicationList(MainVo mainVo, ModelMap model) throws Exception{
-		log.info("selectApplicationList");
+	public String selectMain(MainVo mainVo, ModelMap model) throws Exception{
+		log.info("selectMain");
 		
 //		List<MainVo> list = mainService.selectApplicationList(mainVo);
 //		
@@ -43,13 +43,13 @@ public class MainController {
 //        model = Page.setListPage(mainVo, list.size(), totalCount, model);
 //        model.put("totalCount", totalCount);
 		
-        List<MainVo> list = mainService.selectApplication(mainVo);
-        log.info("selectApplication : " + list);
+//        List<MainVo> list = mainService.selectApplication(mainVo);
+//        log.info("selectApplication : " + list);
         
-		model.put("result", list);
+//		model.put("result", list);
 		model.put("mainVo", mainVo);
 		
-		return "client/application/list";
+		return "client/main/home";
 	}	
 
 	@GetMapping("/step1")

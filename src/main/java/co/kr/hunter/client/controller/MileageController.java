@@ -27,9 +27,9 @@ public class MileageController {
 	@Autowired
 	private MileageService mileageService;
 	
-	@GetMapping
-	public String selectApplicationList(MileageVo mileageVo, ModelMap model) throws Exception{
-		log.info("selectApplicationList");
+	@GetMapping("/cart")
+	public String selectCart(MileageVo mileageVo, ModelMap model) throws Exception{
+		log.info("selectCart");
 		
 //		List<MileageVo> list = mileageService.selectApplicationList(mileageVo);
 //		
@@ -43,13 +43,38 @@ public class MileageController {
 //        model = Page.setListPage(mileageVo, list.size(), totalCount, model);
 //        model.put("totalCount", totalCount);
 		
-        List<MileageVo> list = mileageService.selectApplication(mileageVo);
-        log.info("selectApplication : " + list);
-        
-		model.put("result", list);
+//        List<MileageVo> list = mileageService.selectApplication(mileageVo);
+//        log.info("selectApplication : " + list);
+//        
+//		model.put("result", list);
 		model.put("mileageVo", mileageVo);
 		
-		return "client/application/list";
+		return "client/mileage/list";
+	}	
+	
+	@GetMapping("/checkout")
+	public String selectCheckout(MileageVo mileageVo, ModelMap model) throws Exception{
+		log.info("selectCheckout");
+		
+//		List<MileageVo> list = mileageService.selectApplicationList(mileageVo);
+//		
+//		log.info("selectApplicationList : " + list);
+//		
+//		int totalCount = 0;
+//        if (list.size() > 0) {
+//            totalCount = list.get(0).getTotalCount();
+//        }
+//        
+//        model = Page.setListPage(mileageVo, list.size(), totalCount, model);
+//        model.put("totalCount", totalCount);
+		
+//        List<MileageVo> list = mileageService.selectApplication(mileageVo);
+//        log.info("selectApplication : " + list);
+//        
+//		model.put("result", list);
+		model.put("mileageVo", mileageVo);
+		
+		return "client/mileage/checkout";
 	}	
 
 	@GetMapping("/step1")

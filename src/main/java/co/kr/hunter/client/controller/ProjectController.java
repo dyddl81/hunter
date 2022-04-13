@@ -27,9 +27,9 @@ public class ProjectController {
 	@Autowired
 	private ProjectService projectService;
 	
-	@GetMapping
-	public String selectApplicationList(ProjectVo projectVo, ModelMap model) throws Exception{
-		log.info("selectApplicationList");
+	@GetMapping("/course")
+	public String selectCourse(ProjectVo projectVo, ModelMap model) throws Exception{
+		log.info("selectCourse");
 		
 //		List<ProjectVo> list = projectService.selectApplicationList(projectVo);
 //		
@@ -43,13 +43,263 @@ public class ProjectController {
 //        model = Page.setListPage(projectVo, list.size(), totalCount, model);
 //        model.put("totalCount", totalCount);
 		
-        List<ProjectVo> list = projectService.selectApplication(projectVo);
-        log.info("selectApplication : " + list);
-        
-		model.put("result", list);
+//        List<ProjectVo> list = projectService.selectApplication(projectVo);
+//        log.info("selectApplication : " + list);
+//        
+//		model.put("result", list);
 		model.put("projectVo", projectVo);
 		
-		return "client/application/list";
+		return "client/project/course";
+	}	
+	
+	@GetMapping("/courseDetail")
+	public String selectCourseDetail(ProjectVo projectVo, ModelMap model) throws Exception{
+		log.info("selectCourseDetail");
+		
+//		List<ProjectVo> list = projectService.selectApplicationList(projectVo);
+//		
+//		log.info("selectApplicationList : " + list);
+//		
+//		int totalCount = 0;
+//        if (list.size() > 0) {
+//            totalCount = list.get(0).getTotalCount();
+//        }
+//        
+//        model = Page.setListPage(projectVo, list.size(), totalCount, model);
+//        model.put("totalCount", totalCount);
+		
+//		List<ProjectVo> list = projectService.selectApplication(projectVo);
+//		log.info("selectApplication : " + list);
+//		
+//		model.put("result", list);
+		model.put("projectVo", projectVo);
+		
+		return "client/project/courseDetail";
+	}	
+	
+	@GetMapping("/courseDetailAdv")
+	public String selectCourseDetailAdv(ProjectVo projectVo, ModelMap model) throws Exception{
+		log.info("selectCourseDetailAdv");
+		
+//		List<ProjectVo> list = projectService.selectApplicationList(projectVo);
+//		
+//		log.info("selectApplicationList : " + list);
+//		
+//		int totalCount = 0;
+//        if (list.size() > 0) {
+//            totalCount = list.get(0).getTotalCount();
+//        }
+//        
+//        model = Page.setListPage(projectVo, list.size(), totalCount, model);
+//        model.put("totalCount", totalCount);
+		
+//		List<ProjectVo> list = projectService.selectApplication(projectVo);
+//		log.info("selectApplication : " + list);
+//		
+//		model.put("result", list);
+		model.put("projectVo", projectVo);
+		
+		return "client/project/courseDetailAdv";
+	}	
+	
+	@GetMapping("/courseList")
+	public String selectCourseList(ProjectVo projectVo, ModelMap model) throws Exception{
+		log.info("selectCourseList");
+		
+//		List<ProjectVo> list = projectService.selectApplicationList(projectVo);
+//		
+//		log.info("selectApplicationList : " + list);
+//		
+//		int totalCount = 0;
+//        if (list.size() > 0) {
+//            totalCount = list.get(0).getTotalCount();
+//        }
+//        
+//        model = Page.setListPage(projectVo, list.size(), totalCount, model);
+//        model.put("totalCount", totalCount);
+		
+//		List<ProjectVo> list = projectService.selectApplication(projectVo);
+//		log.info("selectApplication : " + list);
+//		
+//		model.put("result", list);
+		model.put("projectVo", projectVo);
+		
+		return "client/project/courseList";
+	}	
+	
+	@GetMapping("/courseList2")
+	public String selectCourseList2(ProjectVo projectVo, ModelMap model) throws Exception{
+		log.info("selectCourseList2");
+		
+//		List<ProjectVo> list = projectService.selectApplicationList(projectVo);
+//		
+//		log.info("selectApplicationList : " + list);
+//		
+//		int totalCount = 0;
+//        if (list.size() > 0) {
+//            totalCount = list.get(0).getTotalCount();
+//        }
+//        
+//        model = Page.setListPage(projectVo, list.size(), totalCount, model);
+//        model.put("totalCount", totalCount);
+		
+//		List<ProjectVo> list = projectService.selectApplication(projectVo);
+//		log.info("selectApplication : " + list);
+//		
+//		model.put("result", list);
+		model.put("projectVo", projectVo);
+		
+		return "client/project/courseList2";
+	}	
+	
+	@GetMapping("/instructorCreateCourse")
+	public String selectInstructorCreateCourse(ProjectVo projectVo, ModelMap model) throws Exception{
+		log.info("selectInstructorCreateCourse");
+		
+//		List<ProjectVo> list = projectService.selectApplicationList(projectVo);
+//		
+//		log.info("selectApplicationList : " + list);
+//		
+//		int totalCount = 0;
+//        if (list.size() > 0) {
+//            totalCount = list.get(0).getTotalCount();
+//        }
+//        
+//        model = Page.setListPage(projectVo, list.size(), totalCount, model);
+//        model.put("totalCount", totalCount);
+		
+//		List<ProjectVo> list = projectService.selectApplication(projectVo);
+//		log.info("selectApplication : " + list);
+//		
+//		model.put("result", list);
+		model.put("projectVo", projectVo);
+		
+		return "client/project/instructorCreateCourse";
+	}	
+	
+	@GetMapping("/instructorEarning")
+	public String selectInstructorEarning(ProjectVo projectVo, ModelMap model) throws Exception{
+		log.info("selectInstructorEarning");
+		
+//		List<ProjectVo> list = projectService.selectApplicationList(projectVo);
+//		
+//		log.info("selectApplicationList : " + list);
+//		
+//		int totalCount = 0;
+//        if (list.size() > 0) {
+//            totalCount = list.get(0).getTotalCount();
+//        }
+//        
+//        model = Page.setListPage(projectVo, list.size(), totalCount, model);
+//        model.put("totalCount", totalCount);
+		
+//		List<ProjectVo> list = projectService.selectApplication(projectVo);
+//		log.info("selectApplication : " + list);
+//		
+//		model.put("result", list);
+		model.put("projectVo", projectVo);
+		
+		return "client/project/instructorEarning";
+	}	
+	
+	@GetMapping("/instructorList")
+	public String selectInstructorList(ProjectVo projectVo, ModelMap model) throws Exception{
+		log.info("selectInstructorList");
+		
+//		List<ProjectVo> list = projectService.selectApplicationList(projectVo);
+//		
+//		log.info("selectApplicationList : " + list);
+//		
+//		int totalCount = 0;
+//        if (list.size() > 0) {
+//            totalCount = list.get(0).getTotalCount();
+//        }
+//        
+//        model = Page.setListPage(projectVo, list.size(), totalCount, model);
+//        model.put("totalCount", totalCount);
+		
+//		List<ProjectVo> list = projectService.selectApplication(projectVo);
+//		log.info("selectApplication : " + list);
+//		
+//		model.put("result", list);
+		model.put("projectVo", projectVo);
+		
+		return "client/project/instructorList";
+	}	
+	
+	@GetMapping("/instructorManageCourse")
+	public String selectInstructorManageCourse(ProjectVo projectVo, ModelMap model) throws Exception{
+		log.info("selectInstructorManageCourse");
+		
+//		List<ProjectVo> list = projectService.selectApplicationList(projectVo);
+//		
+//		log.info("selectApplicationList : " + list);
+//		
+//		int totalCount = 0;
+//        if (list.size() > 0) {
+//            totalCount = list.get(0).getTotalCount();
+//        }
+//        
+//        model = Page.setListPage(projectVo, list.size(), totalCount, model);
+//        model.put("totalCount", totalCount);
+		
+//		List<ProjectVo> list = projectService.selectApplication(projectVo);
+//		log.info("selectApplication : " + list);
+//		
+//		model.put("result", list);
+		model.put("projectVo", projectVo);
+		
+		return "client/project/instructorManageCourse";
+	}	
+	
+	@GetMapping("/instructorOrder")
+	public String selectIstructorOrder(ProjectVo projectVo, ModelMap model) throws Exception{
+		log.info("selectIstructorOrder");
+		
+//		List<ProjectVo> list = projectService.selectApplicationList(projectVo);
+//		
+//		log.info("selectApplicationList : " + list);
+//		
+//		int totalCount = 0;
+//        if (list.size() > 0) {
+//            totalCount = list.get(0).getTotalCount();
+//        }
+//        
+//        model = Page.setListPage(projectVo, list.size(), totalCount, model);
+//        model.put("totalCount", totalCount);
+		
+//		List<ProjectVo> list = projectService.selectApplication(projectVo);
+//		log.info("selectApplication : " + list);
+//		
+//		model.put("result", list);
+		model.put("projectVo", projectVo);
+		
+		return "client/project/instructorOrder";
+	}	
+	
+	@GetMapping("/instructorReview")
+	public String selectInstructorReview(ProjectVo projectVo, ModelMap model) throws Exception{
+		log.info("selectInstructorReview");
+		
+//		List<ProjectVo> list = projectService.selectApplicationList(projectVo);
+//		
+//		log.info("selectApplicationList : " + list);
+//		
+//		int totalCount = 0;
+//        if (list.size() > 0) {
+//            totalCount = list.get(0).getTotalCount();
+//        }
+//        
+//        model = Page.setListPage(projectVo, list.size(), totalCount, model);
+//        model.put("totalCount", totalCount);
+		
+//		List<ProjectVo> list = projectService.selectApplication(projectVo);
+//		log.info("selectApplication : " + list);
+//		
+//		model.put("result", list);
+		model.put("projectVo", projectVo);
+		
+		return "client/project/instructorReview";
 	}	
 
 	@GetMapping("/step1")

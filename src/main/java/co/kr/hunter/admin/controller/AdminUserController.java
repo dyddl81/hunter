@@ -71,27 +71,6 @@ public class AdminUserController {
 		return "admin/user/free";
 	}	
 	
-	@GetMapping("/member")
-	public String selectAdminMember(AdminUserVo adminUserVo, ModelMap model) throws Exception{
-		log.info("selectAdminMember");
-		
-//		List<AdminUserVo> list = adminUserService.selectAdminApplicationList(adminUserVo);
-//		
-//		log.info("selectAdminApplicationList : " + list);
-//		
-//		int totalCount = 0;
-//        if (list.size() > 0) {
-//            totalCount = list.get(0).getTotalCount();
-//        }
-//        
-//        model = Page.setListPage(adminUserVo, list.size(), totalCount, model);
-//        model.put("totalCount", totalCount);
-//		model.put("result", list);
-		model.put("adminUserVo", adminUserVo);
-		
-		return "admin/user/member";
-	}	
-	
 	@GetMapping("/business")
 	public String selectAdminBusiness(AdminUserVo adminUserVo, ModelMap model) throws Exception{
 		log.info("selectAdminBusiness");
@@ -111,27 +90,6 @@ public class AdminUserController {
 		model.put("adminUserVo", adminUserVo);
 		
 		return "admin/user/business";
-	}	
-	
-	@GetMapping("/headhunter")
-	public String selectAdminHeadhunter(AdminUserVo adminUserVo, ModelMap model) throws Exception{
-		log.info("selectAdminHeadhunter");
-		
-//		List<AdminUserVo> list = adminUserService.selectAdminApplicationList(adminUserVo);
-//		
-//		log.info("selectAdminApplicationList : " + list);
-//		
-//		int totalCount = 0;
-//        if (list.size() > 0) {
-//            totalCount = list.get(0).getTotalCount();
-//        }
-//        
-//        model = Page.setListPage(adminUserVo, list.size(), totalCount, model);
-//        model.put("totalCount", totalCount);
-//		model.put("result", list);
-		model.put("adminUserVo", adminUserVo);
-		
-		return "admin/user/headhunter";
 	}	
 	
 	@GetMapping("/detail/{applicationId}")

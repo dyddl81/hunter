@@ -42,7 +42,6 @@
 			<tiles:insertAttribute name="body" />	
 		</div>
 		<!-- Page content END -->		
-		<tiles:insertAttribute name="footer" />	
 		<!-- [e] wrap -->
 	</main>
 	<!-- **************** MAIN CONTENT END **************** -->

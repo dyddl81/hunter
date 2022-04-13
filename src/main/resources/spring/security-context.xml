@@ -78,9 +78,7 @@
 		<sec:intercept-url pattern="/admin/login"  access="permitAll" />
 		<sec:intercept-url pattern="/admin/logDuplicate"  access="permitAll" />
 		<sec:intercept-url pattern="/admin/accessDenied"  access="permitAll" />
-		<!-- sec:intercept-url pattern="/admin/**"     access="hasAnyRole('ROLE_MASTER','ROLE_ADMIN')" /-->
-		<sec:intercept-url pattern="/admin/**"     access="permitAll" />
-		
+		<sec:intercept-url pattern="/admin/**"     access="hasAnyRole('ROLE_001,ROLE_002')" />
 		<!-- 로그인 시 처리
 		login-processing-url 에 정의된  컨트롤러는 정의하지 않아도 된다 .. 
 		로그인에서 action 경로가  login-processing-url 에 정의된 경로로 오면 spring secutity 가 inteerceptor 하여

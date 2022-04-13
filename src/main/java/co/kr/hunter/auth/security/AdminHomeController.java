@@ -42,10 +42,10 @@ public class AdminHomeController {
 		// 생성된 인증정보에 맞게 화면 이동
 		
 		Collection<? extends GrantedAuthority>  auths = auth.getAuthorities(); 
-		if ( auths.stream().filter(o -> o.getAuthority().equals("ROLE_ADMIN")).findAny().isPresent() )
+		if ( auths.stream().filter(o -> o.getAuthority().equals("ROLE_001")).findAny().isPresent() )
 		{
 			log.info("메인화면으로 이동");
-			return "redirect:/admin/application";
+			return "redirect:/admin/main";
 		} else {
 			log.info("로그인화면으로 이동");
 			String sysMsg = request.getParameter("status");
@@ -100,14 +100,14 @@ public class AdminHomeController {
 			
 		}
 		
-		return "redirect:/admin/application"; // 어드민 메인 화면으로 이동
+		return "redirect:/admin/main"; // 어드민 메인 화면으로 이동
 	}
 	
 	@RequestMapping(value="/admin")
 	public String admin( HttpSession session ) {
 		log.info("어드민 메인");
 		
-		return "redirect:/admin/application";
+		return "redirect:/admin/main";
 	}
 	
 	/**

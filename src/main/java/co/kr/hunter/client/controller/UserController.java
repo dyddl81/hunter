@@ -27,9 +27,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping
-	public String selectApplicationList(UserVo userVo, ModelMap model) throws Exception{
-		log.info("selectApplicationList");
+	@GetMapping("/courseAdded")
+	public String selectCourseAdded(UserVo userVo, ModelMap model) throws Exception{
+		log.info("selectCourseAdded");
 		
 //		List<UserVo> list = userService.selectApplicationList(userVo);
 //		
@@ -43,14 +43,140 @@ public class UserController {
 //        model = Page.setListPage(userVo, list.size(), totalCount, model);
 //        model.put("totalCount", totalCount);
 		
-        List<UserVo> list = userService.selectApplication(userVo);
-        log.info("selectApplication : " + list);
-        
-		model.put("result", list);
+//        List<UserVo> list = userService.selectApplication(userVo);
+//        log.info("selectApplication : " + list);
+//        
+//		model.put("result", list);
 		model.put("userVo", userVo);
 		
-		return "client/application/list";
+		return "client/application/courseAdded";
 	}	
+	
+	@GetMapping("/instructorDeleteAccount")
+	public String selectInstructorDeleteAccount(UserVo userVo, ModelMap model) throws Exception{
+		log.info("instructorDeleteAccount");
+		
+//		List<UserVo> list = userService.selectApplicationList(userVo);
+//		
+//		log.info("selectApplicationList : " + list);
+//		
+//		int totalCount = 0;
+//        if (list.size() > 0) {
+//            totalCount = list.get(0).getTotalCount();
+//        }
+//        
+//        model = Page.setListPage(userVo, list.size(), totalCount, model);
+//        model.put("totalCount", totalCount);
+		
+//		List<UserVo> list = userService.selectApplication(userVo);
+//		log.info("selectApplication : " + list);
+//		
+//		model.put("result", list);
+		model.put("userVo", userVo);
+		
+		return "client/application/instructorDeleteAccount";
+	}	
+	
+	@GetMapping("/instructorPayout")
+	public String selectInstructorPayout(UserVo userVo, ModelMap model) throws Exception{
+		log.info("selectInstructorPayout");
+		
+//		List<UserVo> list = userService.selectApplicationList(userVo);
+//		
+//		log.info("selectApplicationList : " + list);
+//		
+//		int totalCount = 0;
+//        if (list.size() > 0) {
+//            totalCount = list.get(0).getTotalCount();
+//        }
+//        
+//        model = Page.setListPage(userVo, list.size(), totalCount, model);
+//        model.put("totalCount", totalCount);
+		
+//		List<UserVo> list = userService.selectApplication(userVo);
+//		log.info("selectApplication : " + list);
+//		
+//		model.put("result", list);
+		model.put("userVo", userVo);
+		
+		return "client/application/instructorPayout";
+	}	
+	
+	@GetMapping("/instructorSetting")
+	public String selectInstructorSetting(UserVo userVo, ModelMap model) throws Exception{
+		log.info("selectInstructorSetting");
+		
+//		List<UserVo> list = userService.selectApplicationList(userVo);
+//		
+//		log.info("selectApplicationList : " + list);
+//		
+//		int totalCount = 0;
+//        if (list.size() > 0) {
+//            totalCount = list.get(0).getTotalCount();
+//        }
+//        
+//        model = Page.setListPage(userVo, list.size(), totalCount, model);
+//        model.put("totalCount", totalCount);
+		
+//		List<UserVo> list = userService.selectApplication(userVo);
+//		log.info("selectApplication : " + list);
+//		
+//		model.put("result", list);
+		model.put("userVo", userVo);
+		
+		return "client/application/instructorSetting";
+	}	
+	
+	@GetMapping("/studentDashboard")
+	public String selectStudentDashboard(UserVo userVo, ModelMap model) throws Exception{
+		log.info("selectStudentDashboard");
+		
+//		List<UserVo> list = userService.selectApplicationList(userVo);
+//		
+//		log.info("selectApplicationList : " + list);
+//		
+//		int totalCount = 0;
+//        if (list.size() > 0) {
+//            totalCount = list.get(0).getTotalCount();
+//        }
+//        
+//        model = Page.setListPage(userVo, list.size(), totalCount, model);
+//        model.put("totalCount", totalCount);
+		
+//		List<UserVo> list = userService.selectApplication(userVo);
+//		log.info("selectApplication : " + list);
+//		
+//		model.put("result", list);
+		model.put("userVo", userVo);
+		
+		return "client/application/studentDashboard";
+	}	
+	
+	@GetMapping("/universityAdmissionForm")
+	public String selectUniversityAdmissionForm(UserVo userVo, ModelMap model) throws Exception{
+		log.info("selectUniversityAdmissionForm");
+		
+//		List<UserVo> list = userService.selectApplicationList(userVo);
+//		
+//		log.info("selectApplicationList : " + list);
+//		
+//		int totalCount = 0;
+//        if (list.size() > 0) {
+//            totalCount = list.get(0).getTotalCount();
+//        }
+//        
+//        model = Page.setListPage(userVo, list.size(), totalCount, model);
+//        model.put("totalCount", totalCount);
+		
+//		List<UserVo> list = userService.selectApplication(userVo);
+//		log.info("selectApplication : " + list);
+//		
+//		model.put("result", list);
+		model.put("userVo", userVo);
+		
+		return "client/application/universityAdmissionForm";
+	}	
+	
 
 	@GetMapping("/step1")
 	public String selectApplicationStep1(UserVo userVo, ModelMap model) throws Exception{

@@ -38,9 +38,7 @@
 					<!-- Submenu -->
 					<ul class="nav collapse flex-column" id="memberpage" data-bs-parent="#navbar-sidebar">
 						<li class="nav-item"> <a class="nav-link ${path eq '/admin/user/free'?'active':''}" href="<c:url value="/admin/user/free" />">프리랜서</a></li>
-						<li class="nav-item"> <a class="nav-link ${path eq '/admin/user/member'?'active':''}" href="<c:url value="/admin/user/member" />">일반회원</a></li>
 						<li class="nav-item"> <a class="nav-link ${path eq '/admin/user/business'?'active':''}" href="<c:url value="/admin/user/business" />">기업</a></li>
-						<li class="nav-item"> <a class="nav-link ${path eq '/admin/user/headhunter'?'active':''}" href="<c:url value="/admin/user/headhunter" />">헤드헌터</a></li>
 					</ul>
 				</li>
 

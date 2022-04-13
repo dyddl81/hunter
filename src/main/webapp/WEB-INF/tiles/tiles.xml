@@ -3,6 +3,19 @@
 
 <tiles-definitions>
 
+    <definition name="adminMain" template="/WEB-INF/views/layout/admin/main.jsp">
+    	<put-attribute name="menu" value="/WEB-INF/views/layout/admin/menu.jsp" />
+    	<put-attribute name="header" value="/WEB-INF/views/layout/admin/header.jsp" />
+        <put-attribute name="body" />
+    </definition>
+
+    <definition name="admin/*/*" extends="adminMain">
+        <put-attribute name="body" value="/WEB-INF/views/admin/{1}/{2}.jsp"/>
+    </definition>
+
+    <definition name="tAdminLogin" template="/WEB-INF/views/admin/login.jsp">
+    </definition>
+    
     <definition name="clientMain" template="/WEB-INF/views/layout/client/main.jsp">
     	<put-attribute name="header" value="/WEB-INF/views/layout/client/header.jsp" />
         <put-attribute name="body" />
@@ -16,18 +29,4 @@
     <definition name="tClientLogin" template="/WEB-INF/views/client/login.jsp">
     </definition>        
         
-    <definition name="adminMain" template="/WEB-INF/views/layout/admin/main.jsp">
-    	<put-attribute name="menu" value="/WEB-INF/views/layout/admin/menu.jsp" />
-    	<put-attribute name="header" value="/WEB-INF/views/layout/admin/header.jsp" />
-        <put-attribute name="body" />
-        <put-attribute name="footer" value="/WEB-INF/views/layout/admin/footer.jsp" />
-    </definition>
-
-    <definition name="admin/*/*" extends="adminMain">
-        <put-attribute name="body" value="/WEB-INF/views/admin/{1}/{2}.jsp"/>
-    </definition>
-
-    <definition name="tAdminLogin" template="/WEB-INF/views/admin/login.jsp">
-    </definition>
-    
 </tiles-definitions>

@@ -29,7 +29,7 @@ public class MemberAuthService implements AuthenticationProvider {
 		// 
 		String user_id = (String)authentication.getPrincipal();		
 		String user_pw = (String)authentication.getCredentials();
-		log.info("MemberAuthService: id:{} , pwd:{}", user_id , user_pw);
+		log.info("MemberAuthService: id:{} , pwd:{}", user_id , user_pw, passwordEncoder.encode(user_pw));
 		
 		boolean passwordCheck = false;
 		AuthVo authVo = null;

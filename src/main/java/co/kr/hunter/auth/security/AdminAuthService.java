@@ -59,6 +59,7 @@ public class AdminAuthService implements AuthenticationProvider {
 			passwordCheck = passwordEncoder.matches(admin_pw, adminAuthVo.getPassword());
 			
 			log.info("passwordCheck : "+passwordCheck);
+			log.info("getAuthorities : "+adminAuthVo.getAuthorities());
 			
 		} catch (Exception e) {
 			log.info(e.toString());
