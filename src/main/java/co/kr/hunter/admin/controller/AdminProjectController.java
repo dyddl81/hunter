@@ -51,42 +51,41 @@ public class AdminProjectController {
 	private AdminProjectService adminProjectService;
 	
 	@GetMapping
-	public String selectAdminProject(AdminProjectVo adminProjectVo, ModelMap model) throws Exception{
-		log.info("selectAdminProject");
+	public String selectAdminProjectList(AdminProjectVo adminProjectVo, ModelMap model) throws Exception{
+		log.info("selectAdminProjectList");
 		
-//		List<AdminProjectVo> list = adminProjectService.selectAdminApplicationList(adminProjectVo);
-//		
-//		log.info("selectAdminApplicationList : " + list);
-//		
-//		int totalCount = 0;
-//        if (list.size() > 0) {
-//            totalCount = list.get(0).getTotalCount();
-//        }
-//        
-//        model = Page.setListPage(adminProjectVo, list.size(), totalCount, model);
-//        model.put("totalCount", totalCount);
-//		model.put("result", list);
+		List<AdminProjectVo> list = adminProjectService.selectAdminProjectList(adminProjectVo);
+		log.info("selectAdminApplicationList : " + list);
+		
+		int totalCount = 0;
+        if (list.size() > 0) {
+            totalCount = list.get(0).getTotalCount();
+        }
+        
+        model = Page.setListPage(adminProjectVo, list.size(), totalCount, model);
+        model.put("totalCount", totalCount);
+		model.put("result", list);
 		model.put("adminProjectVo", adminProjectVo);
 		
 		return "admin/project/list";
 	}	
 	
-	@GetMapping("/detail/{applicationId}")
-	public String selectAdminApplicationDetail(AdminProjectVo adminProjectVo, ModelMap model) throws Exception{
-		log.info("selectAdminApplicationDetail");
-		
-		AdminProjectVo info = adminProjectService.selectAdminApplication(adminProjectVo);
-		
-		FileVo fileVo = new FileVo();
-		fileVo.setCodeId(info.getApplicationId());
-		List<FileVo> fileList = adminProjectService.selectAdminApplicationFileList(fileVo);
-		
-		model.put("result", info);
-		model.put("fileResult", fileList);
-		model.put("adminProjectVo", adminProjectVo);
-		
-		return "admin/application/detail";
-	}	
+//	@GetMapping("/detail/{applicationId}")
+//	public String selectAdminApplicationDetail(AdminProjectVo adminProjectVo, ModelMap model) throws Exception{
+//		log.info("selectAdminApplicationDetail");
+//		
+//		AdminProjectVo info = adminProjectService.selectAdminApplication(adminProjectVo);
+//		
+//		FileVo fileVo = new FileVo();
+//		fileVo.setCodeId(info.getApplicationId());
+//		List<FileVo> fileList = adminProjectService.selectAdminApplicationFileList(fileVo);
+//		
+//		model.put("result", info);
+//		model.put("fileResult", fileList);
+//		model.put("adminProjectVo", adminProjectVo);
+//		
+//		return "admin/application/detail";
+//	}	
 
 	
     /**

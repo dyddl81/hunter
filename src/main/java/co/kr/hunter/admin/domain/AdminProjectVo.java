@@ -6,133 +6,91 @@ import lombok.Data;
 @Data
 public class AdminProjectVo extends DefaultVo {
 
-	/** array값 */
-	private String arrCheckId;
+	/** 프로젝트번호 */		
+	private int projectNo;
 	
-	/** array값 */
-	private String[] list;
-	
-	/** 상태 */
-	private String step;
-	
-	/** 신규 / 수정 */
-	private String view;
-	
-	/** 신청서 아이디 */
-	private String applicationId;
-	
-	/** 사용자 아이디 */
-	private String userId;
-	
-	/** 아이템명 */
-	private String itemNm;
-	
-	/** 신첨분야 */
-	private String applicationType;
-	
-	/** 지약 */
-	private String area;
-	
-	/** 지약명 */
-	private String areaNm;
-	
-	/** 사업자구분 */
-	private String businessType;
-	
-	/** 창업일 */
-	private String foundingDate;
-	
-	/** 성명 */
-	private String appNm;
-	
-	/** 생년월일 */
-	private String birthDate;
-	
-	/** 휴대폰 */
-	private String phone;
-	
-	/** 이메일 */
-	private String email;
-	
-	/** 최종학력 */
-	private String lastEducational;
-	
-	/** 최종학력명 */
-	private String lastEducationalNm;
-	
-	/** 전공 */
-	private String major;
-	
-	/** 주요경력 */
-	private String majorCareer;
-	
-	/** 여성기업확인서 발급여부 */
-	private String womenBusinessCert;
-	
-	/** 회사명 */
+	/** 회사명 */		
 	private String companyNm;
 	
-	/** 사업자등록번호 */
-	private String businessNum;
+	/** 담당자 성명 */		
+	private String pName;
 	
-	/** 업종 */
-	private String sectors;
+	/** 담당자 이메일 */		
+	private String pEmail;
 	
-	/** 업태 */
-	private String businessCondition;
+	/** 담당자 연락처 */		
+	private String pPhone;
 	
-	/** 법인번호 */
-	private String corporationNum;
+	/** 프로젝트명 */		
+	private String projectNm;
 	
-	/** 쥬요산업 */
-	private String majorIndustries;
+	/** 프로젝트 시작 협의가능여부 */		
+	private String consultationYn;
 	
-	/** 설립일 */
-	private String establishmentDate;
+	/** 시작일 */		
+	private String startDate;
 	
-	/** 전년도 매출 */
-	private int previousYearSales;
+	/** 종료일 */		
+	private String endDate;
 	
-	/** 전전년도 매출 */
-	private int previousYearSales2;
+	/** 프로젝트 단위예산 */		
+	private String unit;
 	
-	/** 전년도 상시근로자수 */
-	private int fulltimeWorker;
+	/** 예산 최소금액 */		
+	private int minimumAmount;
 	
-	/** 전전년도 상시근로자수 */
-	private int fulltimeWorker2;
+	/** 예산 최대금액 */		
+	private int maximumAmount;
 	
-	/** 투자유치금여부 */
-	private String investmentAttractionYn;
+	/** 금무방식 */		
+	private String workingCode;
 	
-	/** 투자유치금 */
-	private int investmentAttraction;
+	/** 상세근무지 */		
+	private String address;
 	
-	/** 수출금여부 */
-	private String exportMoneyYn;
+	/** 현재진행사항 */		
+	private String progressContent;
 	
-	/** 수출금 */
-	private int exportMoney;
+	/** 담당 업무 */		
+	private String mainContent;
 	
-	/** 자본금 */
-	private int capital;
+	/** 업무범위 */		
+	private String workContent;
 	
-	/** 사업장 주소 */
-	private String businessAddress;
+	/** 기타 전달사항 또는 우대사항 */		
+	private String etcContent;
 	
-	/** 코드 */
-	private String code;
+	/** 필요인력 */		
+	private int personCnt;
 	
-	/** 등록자아이디 */
+	/** 연차시작 */		
+	private int workStart;
+	
+	/** 연차종료 */		
+	private int workEnd;
+	
+	/** 프로젝트 상태 */		
+	private String state;
+	
+	/** 프로젝트 진행개수 */		
+	private int stateStartCnt;
+	
+	/** 프로젝트 종료개수 */		
+	private int stateEndCnt;
+	
+	/** 확인유무 */		
+	private String viewYn;
+	
+	/** 등록자 아이디 */		
 	private String createdId;
-	
-	/** 등록일자 */
+
+	/** 등록일자 */		
 	private String createdDatetime;
 	
-	/** 수정자아이디 */
+	/** 수정자 아이디 */		
 	private String updatedId;
 	
-	/** 수정일자 */
+	/** 수정일자 */	
 	private String updatedDatetime;
 	
 }

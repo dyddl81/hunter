@@ -21,12 +21,12 @@ public class AdminProjectService {
 	 * 관리자 신청서 리스트 
 	 * @return
 	 */	
-	public List<AdminProjectVo> selectAdminApplicationList(AdminProjectVo adminProjectVo) {
+	public List<AdminProjectVo> selectAdminProjectList(AdminProjectVo adminProjectVo) {
 		
 		adminProjectVo.setFirstIndex((adminProjectVo.getPageIndex() - 1) * adminProjectVo.getRecordCountPerPage());
 		adminProjectVo.setLastIndex(adminProjectVo.getRecordCountPerPage());	
 		
-		List<AdminProjectVo> list = adminProjectMapper.selectAdminApplicationList(adminProjectVo);
+		List<AdminProjectVo> list = adminProjectMapper.selectAdminProjectList(adminProjectVo);
 		
 		return list;
 	}

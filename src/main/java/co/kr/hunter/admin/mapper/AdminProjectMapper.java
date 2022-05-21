@@ -14,7 +14,7 @@ public interface AdminProjectMapper {
 	 * 관리자 신청서 리스트 
 	 * @return
 	 */	
-	List<AdminProjectVo> selectAdminApplicationList(AdminProjectVo adminProjectVo);
+	List<AdminProjectVo> selectAdminProjectList(AdminProjectVo adminProjectVo);
 
     /**
      * 관리자 신청서 정보
