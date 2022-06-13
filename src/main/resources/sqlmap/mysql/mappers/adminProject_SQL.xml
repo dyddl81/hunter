@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="co.kr.hunter.admin.mapper.AdminProjectapper">
+<mapper namespace="co.kr.hunter.admin.mapper.AdminProjectMapper">
 
     <select id="selectAdminProjectList" resultType="adminProjectVo">
 	   /* AdminProjectMapper.selectAdminProjectList */
